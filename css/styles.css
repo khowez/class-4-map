@@ -1,0 +1,45 @@
+html, body, .container, #sidebar, #mapContainer {
+  height: 100%;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+}
+
+#sidebar {
+  background: #00cfb0;
+  width: 320px;
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+#mapContainer {
+  flex-grow: 1;
+}
+
+.colorDots {
+  width:20px;
+  border-radius:50%;
+  height:20px;
+  margin-right: 10px;
+}
+
+#lane1 {
+  background:#fff200;
+}
+
+#lane2 {
+  background:#ff6a00;
+}
+
+.legend-box {
+  margin-top:70px;
+}
+
+.legend {
+  display:flex;
+  right: 10px;
+  z-index: 1;
+  margin-top: 10px;
+}
