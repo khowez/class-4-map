@@ -42,7 +42,7 @@ map.on('style.load', function () {
     });
 
   // listen for a click on the map and show info in the sidebar
-    map.on('mousemove', function(e) {
+    map.on('click', function(e) {
       // query for the features under the mouse, but only in the routes layer
       var features = map.queryRenderedFeatures(e.point, {
           layers: ['routes-line'],
