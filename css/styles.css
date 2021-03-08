@@ -43,3 +43,12 @@ html, body, .container, #sidebar, #mapContainer {
   z-index: 1;
   margin-top: 10px;
 }
+
+.routeInfoStreet {
+  margin-right: 10px;
+}
+
+#fromStreet, #toStreet {
+  color: white;
+
+}

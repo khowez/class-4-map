@@ -56,9 +56,9 @@ map.on('style.load', function () {
      type: 'line',
      source: 'highlight-feature',
      paint: {
-       'line-width': 2,
-       'line-opacity': 0.9,
-       'line-color': 'orange',
+       'line-width': 10,
+       'line-opacity': 0.6,
+       'line-color': 'white',
      }
    });
 
