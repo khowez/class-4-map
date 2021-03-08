@@ -41,22 +41,56 @@ map.on('style.load', function () {
       },
     });
 
-  // listen for a click on the map and show info in the sidebar
-    map.on('click', function(e) {
-      // query for the features under the mouse, but only in the routes layer
-      var features = map.queryRenderedFeatures(e.point, {
-          layers: ['routes-line'],
-      });
+    // add an empty data source, which we will use to highlight the geometry the user has selected
+   map.addSource('highlight-feature', {
+     type: 'geojson',
+     data: {
+       type: 'FeatureCollection',
+       features: []
+     }
+   })
 
-      if (features.length > 0 ) {
-        var hoveredFeature = features[0]
-        var routeFromStreet = hoveredFeature.properties.fromstreet
-        var routeToStreet = hoveredFeature.properties.tostreet
+   // add a layer for the highlighted feature
+   map.addLayer({
+     id: 'highlight-line',
+     type: 'line',
+     source: 'highlight-feature',
+     paint: {
+       'line-width': 2,
+       'line-opacity': 0.9,
+       'line-color': 'orange',
+     }
+   });
 
-        $('#fromStreet').text(routeFromStreet)
-        $('#toStreet').text(routeToStreet)
+   // listen for a click on the map and show info in the sidebar
+     map.on('click', function(e) {
+       // query for the features under the mouse, but only in the routes layer
+       var features = map.queryRenderedFeatures(e.point, {
+           layers: ['routes-line'],
+       });
 
-      }
-    })
+       if (features.length > 0 ) {
+         var hoveredFeature = features[0]
+
+         var routeFromStreet = hoveredFeature.properties.fromstreet
+         var routeToStreet = hoveredFeature.properties.tostreet
+
+         $('#fromStreet').text(routeFromStreet)
+         $('#toStreet').text(routeToStreet)
+
+         map.getSource('highlight-feature').setData(hoveredFeature.geometry);
+
+       }
+     })
+
+
+   // when the user hovers over our routes layer make the mouse cursor a pointer
+   map.on('mouseenter', 'routes-line', () => {
+     map.getCanvas().style.cursor = 'pointer'
+   })
+   map.on('mouseleave', 'routes-line', () => {
+     map.getCanvas().style.cursor = ''
+   })
+
   })
 })
