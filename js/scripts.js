@@ -53,8 +53,8 @@ map.on('style.load', function () {
         var routeFromStreet = hoveredFeature.properties.fromstreet
         var routeToStreet = hoveredFeature.properties.tostreet
 
-        $('.fromStreet').text(routeFromStreet)
-        $('.toStreet').text(routeToStreet)
+        $('#fromStreet').text(routeFromStreet)
+        $('#toStreet').text(routeToStreet)
 
       }
     })
